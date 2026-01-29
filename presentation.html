@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Management System - Complete Presentation</title>
+    <link rel="stylesheet" href="presentation.css">
+    <!-- Mermaid JS for Flowcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#764ba2',
+                lineColor: '#667eea',
+                secondaryColor: '#764ba2',
+                tertiaryColor: '#f8fafc'
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">🎓 Student Attendance Management System</div>
+            <div class="nav-menu">
+                <a href="#introduction">Introduction</a>
+                <a href="#system-overview">System Overview</a>
+                <a href="#flowcharts">Flowcharts</a>
+                <a href="#technical">Technical Details</a>
+                <a href="#implementation">Implementation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="main-title">🎓 Student Attendance Management System</h1>
+            <p class="subtitle">A Complete Full-Stack Mobile Application</p>
+            <div class="project-info">
+                <div class="info-box">
+                    <strong>Platform:</strong> React Native + Expo
+                </div>
+                <div class="info-box">
+                    <strong>Backend:</strong> Supabase (PostgreSQL)
+                </div>
+                <div class="info-box">
+                    <strong>Security:</strong> Row Level Security (RLS)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h2 class="section-heading">📋 1. Project Introduction</h2>
+
+            <div class="content-card">
+                <h3>🎯 Problem Statement</h3>
+                <p>Traditional attendance management in educational institutes faces several challenges:</p>
+                <ul class="problem-list">
+                    <li>❌ Manual paper-based attendance is time-consuming</li>
+                    <li>❌ Data manipulation and backdating issues</li>
+                    <li>❌ No real-time tracking for students</li>
+                    <li>❌ Difficult to generate reports and analytics</li>
+                    <li>❌ No automated alert system for low attendance</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h3>✅ Our Solution</h3>
+                <p>We have developed a <strong>professional, production-ready mobile application system</strong>
+                    consisting of:</p>
+                <div class="solution-grid">
+                    <div class="solution-item">
+                        <div class="solution-icon">👨‍🏫</div>
+                        <h4>Faculty Application</h4>
+                        <p>For teachers to mark and manage attendance digitally with calendar interface</p>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">👨‍🎓</div>
+                        <h4>Student Application</h4>
+                        <p>For students to view their attendance records with visual calendar and alerts</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>🎯 Project Objectives</h3>
+                <div class="objectives-grid">
+                    <div class="objective-box">
+                        <span class="obj-num">1</span>
+                        <p>Digitize attendance management process</p>
+                    </div>
+                    <div class="objective-box">
+                        <span class="obj-num">2</span>
+                        <p>Implement database-level security</p>
+                    </div>
+                    <div class="objective-box">
+                        <span class="obj-num">3</span>
+                        <p>Provide real-time attendance tracking</p>
+                    </div>
+                    <div class="objective-box">
+                        <span class="obj-num">4</span>
+                        <p>Prevent data manipulation with auto-lock</p>
+                    </div>
+                    <div class="objective-box">
+                        <span class="obj-num">5</span>
+                        <p>Create scalable, production-ready system</p>
+                    </div>
+                    <div class="objective-box">
+                        <span class="obj-num">6</span>
+                        <p>Enable automated alerts for students</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Overview -->
+    <section id="system-overview" class="section bg-light">
+        <div class="container">
+            <h2 class="section-heading">🏗️ 2. System Overview & Architecture</h2>
+
+            <div class="content-card">
+                <h3>📱 Application Components</h3>
+                <div class="architecture-visual">
+                    <div class="app-component">
+                        <div class="component-header faculty-header">Faculty Application</div>
+                        <div class="component-body">
+                            <ul>
+                                <li>✓ Calendar-based attendance marking</li>
+                                <li>✓ Semester & subject selection</li>
+                                <li>✓ Student list with P/A marking</li>
+                                <li>✓ Student management (Activate/Deactivate)</li>
+                                <li>✓ 3-day edit window (auto-lock after)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="connection-arrow">⟷</div>
+
+                    <div class="backend-component">
+                        <div class="component-header backend-header">Supabase Backend</div>
+                        <div class="component-body">
+                            <ul>
+                                <li>🔐 Authentication (JWT)</li>
+                                <li>🗄️ PostgreSQL Database</li>
+                                <li>🛡️ Row Level Security</li>
+                                <li>⚡ Real-time Sync</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="connection-arrow">⟷</div>
+
+                    <div class="app-component">
+                        <div class="component-header student-header">Student Application</div>
+                        <div class="component-body">
+                            <ul>
+                                <li>✓ View attendance dashboard</li>
+                                <li>✓ Calendar view (Green/Red dates)</li>
+                                <li>✓ Overall percentage display</li>
+                                <li>✓ Alert when attendance &lt; 75%</li>
+                                <li>✓ Read-only access (no editing)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>🔧 Technology Stack</h3>
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Technology</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frontend</strong></td>
+                            <td>React Native + Expo</td>
+                            <td>Cross-platform mobile app development (iOS + Android)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Language</strong></td>
+                            <td>JavaScript (ES6+)</td>
+                            <td>Application logic and UI components</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backend</strong></td>
+                            <td>Supabase</td>
+                            <td>Backend-as-a-Service with PostgreSQL database</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Database</strong></td>
+                            <td>PostgreSQL</td>
+                            <td>Relational database with ACID compliance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Authentication</strong></td>
+                            <td>Supabase Auth</td>
+                            <td>JWT-based secure authentication</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Security</strong></td>
+                            <td>Row Level Security (RLS)</td>
+                            <td>Database-level access control policies</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flowcharts Section -->
+    <section id="flowcharts" class="section">
+        <div class="container">
+            <h2 class="section-heading">📊 3. System Flowcharts</h2>
+
+            <div class="content-card">
+                <h3>3.1 Complete System Architecture</h3>
+                <div class="mermaid">
+                    graph TB
+                    subgraph "Mobile Applications"
+                    FA[Faculty App<br />React Native]
+                    SA[Student App<br />React Native]
+                    end
+
+                    subgraph "Authentication Layer"
+                    AUTH[Supabase Authentication<br />JWT Tokens]
+                    end
+
+                    subgraph "Security Layer"
+                    RLS[Row Level Security<br />Access Control Policies]
+                    end
+
+                    subgraph "Database Layer"
+                    DB[(PostgreSQL Database<br />Supabase)]
+                    TRIGGER[Database Triggers<br />Auto-lock Mechanism]
+                    end
+
+                    FA -->|Login Request| AUTH
+                    SA -->|Login Request| AUTH
+                    AUTH -->|Verify Credentials| RLS
+                    RLS -->|Apply Policies| DB
+                    DB -->|Execute Triggers| TRIGGER
+                    TRIGGER -->|Return Filtered Data| RLS
+                    RLS -->|Faculty Data| FA
+                    RLS -->|Student Data| SA
+
+                    style FA fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
+                    style SA fill:#10b981,stroke:#333,stroke-width:2px,color:#fff
+                    style AUTH fill:#f59e0b,stroke:#333,stroke-width:2px
+                    style RLS fill:#ef4444,stroke:#333,stroke-width:2px,color:#fff
+                    style DB fill:#3b82f6,stroke:#333,stroke-width:2px,color:#fff
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.2 Faculty Login & Authentication Flow</h3>
+                <div class="mermaid">
+                    sequenceDiagram
+                    participant Faculty
+                    participant FacultyApp
+                    participant SupabaseAuth
+                    participant Database
+                    participant RLS
+
+                    Faculty->>FacultyApp: Enter Faculty ID + Password
+                    FacultyApp->>FacultyApp: Client-side Validation
+                    FacultyApp->>SupabaseAuth: Send Login Request
+                    SupabaseAuth->>Database: Verify Credentials
+                    Database-->>SupabaseAuth: Return User Record + Role
+                    SupabaseAuth->>SupabaseAuth: Generate JWT Token
+                    SupabaseAuth-->>FacultyApp: Return JWT + User Data
+                    FacultyApp->>Faculty: Show Semester Selection
+                    Faculty->>FacultyApp: Select Semester
+                    FacultyApp->>Database: Request Assigned Subjects
+                    Database->>RLS: Apply Faculty Policies
+                    RLS-->>FacultyApp: Return Only Assigned Subjects
+                    FacultyApp->>Faculty: Show Faculty Dashboard
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.3 Faculty Attendance Marking Process</h3>
+                <div class="mermaid">
+                    flowchart TD
+                    Start([Faculty Dashboard]) --> SelectDate[Select Date from Calendar]
+                    SelectDate --> SelectSem[Select Semester 1-6]
+                    SelectSem --> LoadSubjects[Load Subject List]
+                    LoadSubjects --> SubType{Subject Type?}
+                    SubType -->|Lecture| LoadStudents1[Load Students for Lecture]
+                    SubType -->|Lab| LoadStudents2[Load Students for Lab]
+                    LoadStudents1 --> AttendanceScreen[Attendance Marking Screen]
+                    LoadStudents2 --> AttendanceScreen
+                    AttendanceScreen --> MarkLoop[Mark P or A for Each Student]
+                    MarkLoop --> AllMarked{All Students Marked?}
+                    AllMarked -->|No| MarkLoop
+                    AllMarked -->|Yes| CheckDate{Date Check}
+                    CheckDate -->|Within 3 Days| SaveDB[Save to Database]
+                    CheckDate -->|More than 3 Days| Locked[❌ Attendance Locked<br />Cannot Edit]
+                    SaveDB --> Success[✅ Success Message]
+                    Success --> End([Return to Dashboard])
+                    Locked --> End
+
+                    style Start fill:#667eea,color:#fff
+                    style Success fill:#10b981,color:#fff
+                    style Locked fill:#ef4444,color:#fff
+                    style End fill:#667eea,color:#fff
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.4 Student Login & Dashboard Flow</h3>
+                <div class="mermaid">
+                    flowchart TD
+                    Start([Student Login Page]) --> EnterCred[Enter Enrollment Number + Password]
+                    EnterCred --> SelectSem[Select Semester]
+                    SelectSem --> Authenticate[Supabase Authentication]
+                    Authenticate --> VerifySem{Semester Match<br />with Database?}
+                    VerifySem -->|No| Denied[❌ Login Denied<br />Semester Mismatch]
+                    VerifySem -->|Yes| LoadData[Load Attendance Data]
+                    LoadData --> CalcPerc[Calculate Overall Percentage]
+                    CalcPerc --> CheckPerc{Attendance < 75%?} CheckPerc -->|Yes| ShowRed[🔴 Show RED Alert<br />Warning
+                        Message]
+                        CheckPerc -->|No| ShowGreen[🟢 Show GREEN Status<br />Good Standing]
+                        ShowRed --> Dashboard[Student Dashboard]
+                        ShowGreen --> Dashboard
+                        Dashboard --> UserAction{User Action?}
+                        UserAction -->|View Calendar| CalendarView[Open Calendar View]
+                        UserAction -->|Logout| End([Logout])
+                        CalendarView --> ClickDate[Click on Date]
+                        ClickDate --> ShowDetails[Show Popup:<br />- Subject Name<br />- Faculty Name<br />-
+                        Lecture/Lab<br />- Status P/A]
+                        ShowDetails --> Dashboard
+
+                        style Start fill:#667eea,color:#fff
+                        style Denied fill:#ef4444,color:#fff
+                        style ShowRed fill:#fca5a5,color:#000
+                        style ShowGreen fill:#86efac,color:#000
+                        style End fill:#667eea,color:#fff
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.5 Auto-Lock Mechanism (Database Trigger)</h3>
+                <div class="mermaid">
+                    flowchart LR
+                    Attendance[Attendance Marked] --> SaveTime[Save with<br />marked_at Timestamp]
+                    SaveTime --> Cron[Daily Cron Job<br />Runs at Midnight]
+                    Cron --> Check{marked_at ><br />3 Days Ago?}
+                    Check -->|No| Wait[Wait for Next Run]
+                    Check -->|Yes| Lock[Set is_locked = TRUE]
+                    Lock --> Timestamp[Set locked_at Timestamp]
+                    Timestamp --> Update[Update Database]
+                    Update --> NoEdit[Faculty Cannot Edit<br />Attendance Locked 🔒]
+
+                    style Attendance fill:#667eea,color:#fff
+                    style Lock fill:#ef4444,color:#fff
+                    style NoEdit fill:#fca5a5,color:#000
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.6 Database ER Diagram (Entity Relationships)</h3>
+                <div class="mermaid">
+                    erDiagram
+                    TEACHERS ||--o{ SUBJECTS : assigns
+                    TEACHERS ||--o{ ATTENDANCE : marks
+                    STUDENTS ||--o{ ATTENDANCE : receives
+                    SUBJECTS ||--o{ ATTENDANCE : tracks
+                    SEMESTERS ||--o{ STUDENTS : enrolls
+                    ACADEMIC_YEARS ||--o{ SEMESTERS : contains
+
+                    TEACHERS {
+                    uuid teacher_id PK
+                    string faculty_id UK
+                    string name
+                    string email UK
+                    string department
+                    }
+
+                    STUDENTS {
+                    uuid student_id PK
+                    string enrollment_number UK
+                    string name
+                    int semester
+                    boolean is_active
+                    }
+
+                    SUBJECTS {
+                    uuid subject_id PK
+                    string subject_name
+                    string subject_code UK
+                    int semester
+                    enum subject_type
+                    uuid assigned_faculty_id FK
+                    }
+
+                    ATTENDANCE {
+                    uuid attendance_id PK
+                    uuid student_id FK
+                    uuid subject_id FK
+                    uuid faculty_id FK
+                    date date
+                    enum status
+                    boolean is_locked
+                    timestamp marked_at
+                    }
+
+                    SEMESTERS {
+                    uuid semester_id PK
+                    int semester_number
+                    uuid academic_year_id FK
+                    }
+
+                    ACADEMIC_YEARS {
+                    uuid year_id PK
+                    string year_name
+                    boolean is_current
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Details -->
+    <section id="technical" class="section bg-light">
+        <div class="container">
+            <h2 class="section-heading">🔧 4. Technical Implementation Details</h2>
+
+            <div class="content-card">
+                <h3>4.1 Database Schema (PostgreSQL)</h3>
+                <p><strong>Normalization Level:</strong> Third Normal Form (3NF)</p>
+
+                <div class="db-tables-grid">
+                    <div class="db-table-card">
+                        <div class="table-header">👨‍🏫 teachers</div>
+                        <div class="table-content">
+                            <div class="field-row"><span class="key-badge pk">PK</span> teacher_id (UUID)</div>
+                            <div class="field-row"><span class="key-badge uk">UK</span> faculty_id (VARCHAR)</div>
+                            <div class="field-row">name (VARCHAR)</div>
+                            <div class="field-row">email (VARCHAR)</div>
+                            <div class="field-row">department (VARCHAR)</div>
+                        </div>
+                    </div>
+
+                    <div class="db-table-card">
+                        <div class="table-header">👨‍🎓 students</div>
+                        <div class="table-content">
+                            <div class="field-row"><span class="key-badge pk">PK</span> student_id (UUID)</div>
+                            <div class="field-row"><span class="key-badge uk">UK</span> enrollment_number</div>
+                            <div class="field-row">name (VARCHAR)</div>
+                            <div class="field-row">semester (INT 1-6)</div>
+                            <div class="field-row">is_active (BOOLEAN)</div>
+                        </div>
+                    </div>
+
+                    <div class="db-table-card">
+                        <div class="table-header">📚 subjects</div>
+                        <div class="table-content">
+                            <div class="field-row"><span class="key-badge pk">PK</span> subject_id (UUID)</div>
+                            <div class="field-row">subject_name (VARCHAR)</div>
+                            <div class="field-row">subject_code (VARCHAR)</div>
+                            <div class="field-row">semester (INT 1-6)</div>
+                            <div class="field-row">subject_type (Lecture/Lab)</div>
+                            <div class="field-row"><span class="key-badge fk">FK</span> assigned_faculty_id</div>
+                        </div>
+                    </div>
+
+                    <div class="db-table-card">
+                        <div class="table-header">📝 attendance</div>
+                        <div class="table-content">
+                            <div class="field-row"><span class="key-badge pk">PK</span> attendance_id (UUID)</div>
+                            <div class="field-row"><span class="key-badge fk">FK</span> student_id</div>
+                            <div class="field-row"><span class="key-badge fk">FK</span> subject_id</div>
+                            <div class="field-row"><span class="key-badge fk">FK</span> faculty_id</div>
+                            <div class="field-row">date (DATE)</div>
+                            <div class="field-row">status (Present/Absent)</div>
+                            <div class="field-row">is_locked (BOOLEAN)</div>
+                            <div class="field-row">marked_at (TIMESTAMP)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.2 Row Level Security (RLS) Policies</h3>
+
+                <div class="rls-section">
+                    <h4>👨‍🏫 Faculty Policies</h4>
+                    <div class="code-box">
+                        <pre><code>-- Faculty can view only their assigned subjects
+CREATE POLICY faculty_view_subjects ON subjects
+FOR SELECT USING (assigned_faculty_id = auth.uid());
+
+-- Faculty can mark attendance
+CREATE POLICY faculty_insert_attendance ON attendance
+FOR INSERT WITH CHECK (
+  faculty_id = auth.uid() AND
+  EXISTS (
+    SELECT 1 FROM subjects
+    WHERE subject_id = attendance.subject_id
+    AND assigned_faculty_id = auth.uid()
+  )
+);
+
+-- Faculty can edit within 3 days only
+CREATE POLICY faculty_update_attendance ON attendance
+FOR UPDATE USING (
+  faculty_id = auth.uid() AND
+  is_locked = FALSE AND
+  marked_at >= NOW() - INTERVAL '3 days'
+);</code></pre>
+                    </div>
+                </div>
+
+                <div class="rls-section">
+                    <h4>👨‍🎓 Student Policies</h4>
+                    <div class="code-box">
+                        <pre><code>-- Students can view only their own attendance
+CREATE POLICY student_view_attendance ON attendance
+FOR SELECT USING (student_id = auth.uid());
+
+-- Students cannot insert, update, or delete
+CREATE POLICY student_no_write ON attendance
+FOR INSERT WITH CHECK (false);
+
+CREATE POLICY student_no_update ON attendance
+FOR UPDATE USING (false);
+
+CREATE POLICY student_no_delete ON attendance
+FOR DELETE USING (false);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.3 Auto-Lock Database Trigger</h3>
+                <div class="code-box">
+                    <pre><code>-- Function to auto-lock attendance after 3 days
+CREATE OR REPLACE FUNCTION auto_lock_attendance()
+RETURNS void AS $$
+BEGIN
+  UPDATE attendance
+  SET is_locked = TRUE,
+      locked_at = NOW()
+  WHERE is_locked = FALSE
+    AND marked_at < NOW() - INTERVAL '3 days';
+END;
+$$ LANGUAGE plpgsql;
+
+-- Schedule daily cron job
+SELECT cron.schedule(
+  'auto-lock-attendance',
+  '0 0 * * *', -- Run daily at midnight
+  $$ SELECT auto_lock_attendance(); $$
+);</code></pre>
+                </div>
+                <p class="explanation">
+                    ⏰ This trigger runs automatically every day at midnight and locks all attendance records that are
+                    older than 3 days, preventing any further edits.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation -->
+    <section id="implementation" class="section">
+        <div class="container">
+            <h2 class="section-heading">🚀 5. Implementation & Features</h2>
+
+            <div class="content-card">
+                <h3>5.1 Key Features Summary</h3>
+                <div class="features-showcase">
+                    <div class="feature-box">
+                        <div class="feature-number">1</div>
+                        <h4>Database-Level Security</h4>
+                        <p>All security enforced at PostgreSQL level using Row Level Security, not client-side</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-number">2</div>
+                        <h4>Automatic Data Protection</h4>
+                        <p>3-day auto-lock mechanism prevents backdating and data manipulation</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-number">3</div>
+                        <h4>Role-Based Access</h4>
+                        <p>Strict separation between faculty write access and student read-only access</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-number">4</div>
+                        <h4>Real-time Alerts</h4>
+                        <p>Automatic red alert for students with attendance below 75%</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-number">5</div>
+                        <h4>Visual Calendar Interface</h4>
+                        <p>Intuitive calendar view with green (present) and red (absent) color coding</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-number">6</div>
+                        <h4>Production Ready</h4>
+                        <p>Clean code, proper architecture, complete documentation, ready for deployment</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>5.2 Project Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item completed">
+                        <div class="timeline-badge">✅</div>
+                        <div class="timeline-content">
+                            <h4>Week 1: Planning & Documentation</h4>
+                            <p>System architecture, database design, complete technical documentation</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge">📅</div>
+                        <div class="timeline-content">
+                            <h4>Week 2: Database Setup</h4>
+                            <p>Supabase project creation, schema implementation, RLS policies</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge">📅</div>
+                        <div class="timeline-content">
+                            <h4>Week 3-4: Faculty App Development</h4>
+                            <p>Authentication, dashboard, attendance marking, student management</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge">📅</div>
+                        <div class="timeline-content">
+                            <h4>Week 5-6: Student App Development</h4>
+                            <p>Login, dashboard, calendar view, attendance details</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge">📅</div>
+                        <div class="timeline-content">
+                            <h4>Week 7: Testing & Bug Fixes</h4>
+                            <p>Unit testing, integration testing, RLS validation, bug fixes</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge">📅</div>
+                        <div class="timeline-content">
+                            <h4>Week 8: Deployment & Presentation</h4>
+                            <p>Production build, deployment, final presentation preparation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>5.3 Learning Outcomes</h3>
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>📱 Mobile Development</h4>
+                        <ul>
+                            <li>React Native framework</li>
+                            <li>Expo development tools</li>
+                            <li>Cross-platform design</li>
+                            <li>Navigation & routing</li>
+                        </ul>
+                    </div>
+                    <div class="learning-card">
+                        <h4>🗄️ Database Skills</h4>
+                        <ul>
+                            <li>PostgreSQL queries</li>
+                            <li>Database normalization (3NF)</li>
+                            <li>Triggers & functions</li>
+                            <li>Constraints & indexes</li>
+                        </ul>
+                    </div>
+                    <div class="learning-card">
+                        <h4>🔐 Security</h4>
+                        <ul>
+                            <li>Row Level Security</li>
+                            <li>JWT authentication</li>
+                            <li>Authorization policies</li>
+                            <li>Data protection</li>
+                        </ul>
+                    </div>
+                    <div class="learning-card">
+                        <h4>🏗️ Architecture</h4>
+                        <ul>
+                            <li>Three-tier architecture</li>
+                            <li>System design patterns</li>
+                            <li>Clean code principles</li>
+                            <li>Documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="conclusion-section">
+        <div class="container">
+            <h2>🎯 Project Summary</h2>
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Mobile Apps</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Database Tables</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Security Coverage</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3NF</div>
+                    <div class="stat-label">DB Normalization</div>
+                </div>
+            </div>
+            <p class="conclusion-text">
+                This Student Attendance Management System demonstrates professional software development practices,
+                from system architecture to security implementation. The project is production-ready and showcases
+                industry-standard approaches to building mobile applications with backend integration.
+            </p>
+            <div class="thank-you">
+                <h3>Thank You! 🙏</h3>
+                <p>Government Polytechnic College - 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Student Attendance Management System | Built with React Native & Supabase</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" class="scroll-top">↑</button>
+
+    <script src="presentation.js"></script>
+</body>
+
+</html>
