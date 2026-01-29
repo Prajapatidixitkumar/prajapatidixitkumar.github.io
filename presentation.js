@@ -3,7 +3,7 @@
 
 // Apply saved theme IMMEDIATELY before page loads (no flash)
 (function () {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const savedTheme = localStorage.getItem('theme') || 'light'; // Default: LIGHT MODE
     if (savedTheme === 'light') {
         document.documentElement.classList.add('light-mode-loading');
     }
@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.querySelector('.theme-icon');
 
-    // Check for saved theme preference or default to dark mode
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    // Check for saved theme preference or default to LIGHT mode
+    const currentTheme = localStorage.getItem('theme') || 'light'; // Default: LIGHT MODE
 
     if (currentTheme === 'light') {
         document.body.classList.add('light-mode');

@@ -22,7 +22,17 @@
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.15);
 
-    /* Dark mode (default) */
+    /* Light mode (DEFAULT) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+}
+
+body.dark-mode {
+    /* Dark mode (when toggled) */
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
     --text-primary: #f8fafc;
