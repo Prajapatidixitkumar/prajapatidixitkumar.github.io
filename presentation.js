@@ -1,69 +1,36 @@
 // Professional Presentation JavaScript
 // Student Attendance Management System
-
-// Apply saved theme IMMEDIATELY before page loads (no flash)
-(function () {
-    const savedTheme = localStorage.getItem('theme') || 'light'; // Default: LIGHT MODE
-    if (savedTheme === 'light') {
-        document.documentElement.classList.add('light-mode-loading');
-    }
-})();
+// Light Mode Only - No Theme Toggle
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Theme Toggle Functionality
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.querySelector('.theme-icon');
+    // Hamburger Menu Toggle for Mobile
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
 
-    // Check for saved theme preference or default to LIGHT mode
-    const currentTheme = localStorage.getItem('theme') || 'light'; // Default: LIGHT MODE
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function () {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
 
-    if (currentTheme === 'light') {
-        document.body.classList.add('light-mode');
-        document.documentElement.classList.remove('light-mode-loading');
-        updateThemeIcon('light');
-    }
+        // Close menu when clicking on a link
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
 
-    themeToggle.addEventListener('click', function () {
-        document.body.classList.toggle('light-mode');
-
-        let theme = 'dark';
-        if (document.body.classList.contains('light-mode')) {
-            theme = 'light';
-        }
-
-        localStorage.setItem('theme', theme);
-        updateThemeIcon(theme);
-
-        // Show notification
-        showThemeNotification(theme);
-    });
-
-    function updateThemeIcon(theme) {
-        themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
-    }
-
-    function showThemeNotification(theme) {
-        const notification = document.createElement('div');
-        notification.textContent = theme === 'light' ? '☀️ Light Mode' : '🌙 Dark Mode';
-        notification.style.cssText = `
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: ${theme === 'light' ? '#10b981' : '#667eea'};
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-weight: bold;
-            z-index: 9999;
-            animation: fadeIn 0.3s;
-        `;
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.style.animation = 'fadeOut 0.3s';
-            setTimeout(() => notification.remove(), 300);
-        }, 1500);
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const isClickInside = hamburger.contains(event.target) || navMenu.contains(event.target);
+            if (!isClickInside && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
     }
 
     // Smooth scrolling for navigation links
@@ -230,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
         statsObserver.observe(conclusionSection);
     }
 
-    // Add click-to-expand for code boxes
+    // Add click-to-copy for code boxes
     const codeBoxes = document.querySelectorAll('.code-box');
     codeBoxes.forEach(box => {
         box.style.cursor = 'pointer';
@@ -285,20 +252,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Print button functionality (optional)
     const printBtn = document.createElement('button');
-    printBtn.innerHTML = '🖨️ Print';
+    printBtn.innerHTML = '🖨️';
+    printBtn.title = 'Print';
+
+    // Detect if mobile
+    const isMobile = window.innerWidth <= 768;
+
     printBtn.style.cssText = `
         position: fixed;
-        bottom: 100px;
-        right: 30px;
-        padding: 0.8rem 1.5rem;
+        bottom: ${isMobile ? '75px' : '100px'};
+        right: ${isMobile ? '15px' : '30px'};
+        width: ${isMobile ? '48px' : '50px'};
+        height: ${isMobile ? '48px' : '50px'};
+        padding: 0;
         background: white;
         color: #667eea;
         border: 2px solid #667eea;
-        border-radius: 25px;
+        border-radius: 50%;
+        font-size: ${isMobile ? '1.2rem' : '1.5rem'};
         font-weight: bold;
         cursor: pointer;
-        z-index: 999;
+        z-index: 998;
         transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     `;
 
     printBtn.addEventListener('click', function () {
@@ -308,11 +287,23 @@ document.addEventListener('DOMContentLoaded', function () {
     printBtn.addEventListener('mouseenter', function () {
         this.style.background = '#667eea';
         this.style.color = 'white';
+        this.style.transform = 'scale(1.1)';
     });
 
     printBtn.addEventListener('mouseleave', function () {
         this.style.background = 'white';
         this.style.color = '#667eea';
+        this.style.transform = 'scale(1)';
+    });
+
+    // Adjust on window resize
+    window.addEventListener('resize', function () {
+        const mobile = window.innerWidth <= 768;
+        printBtn.style.bottom = mobile ? '75px' : '100px';
+        printBtn.style.right = mobile ? '15px' : '30px';
+        printBtn.style.width = mobile ? '48px' : '50px';
+        printBtn.style.height = mobile ? '48px' : '50px';
+        printBtn.style.fontSize = mobile ? '1.2rem' : '1.5rem';
     });
 
     document.body.appendChild(printBtn);
