@@ -1,648 +1,403 @@
-# 🎓 STUDENT ATTENDANCE MANAGEMENT SYSTEM
-## Complete Final Documentation & Presentation Guide
+# 🎓 Student Attendance Management System
 
-**Government Polytechnic College - 2026**  
-**Academic Project Documentation**
-
----
-
-## 📋 Table of Contents
-
-1. [Project Overview](#1-project-overview)
-2. [Problem Statement & Solution](#2-problem-statement--solution)
-3. [System Architecture](#3-system-architecture)
-4. [Technology Stack](#4-technology-stack)
-5. [Application Features](#5-application-features)
-6. [Database Design](#6-database-design)
-7. [Security Implementation](#7-security-implementation)
-8. [System Flowcharts](#8-system-flowcharts)
-9. [Implementation Details](#9-implementation-details)
-10. [Project Timeline](#10-project-timeline)
-11. [Presentation Script](#11-presentation-script)
-12. [Q&A Preparation](#12-qa-preparation)
+> **A Production-Ready, Full-Stack Mobile Application for Academic Institutes**  
+> Built with Expo + React Native & Supabase PostgreSQL
 
 ---
 
-## 1. Project Overview
+## 📋 Project Overview
 
-### 1.1 Introduction
+This is a **real-world, industry-standard** Student Attendance Management System developed as an academic project for Government Polytechnic College evaluation. The system consists of **two separate mobile applications** sharing a unified Supabase backend with enterprise-level security.
 
-**Student Attendance Management System** is a professional, production-ready mobile application designed to digitize and automate the attendance management process in educational institutions.
+### 🎯 Key Highlights
 
-### 1.2 Project Objectives
-
-| # | Objective | Description |
-|---|-----------|-------------|
-| 1 | **Digitization** | Transform paper-based attendance to digital system |
-| 2 | **Security** | Implement database-level security with RLS policies |
-| 3 | **Real-time Tracking** | Enable students to view attendance instantly |
-| 4 | **Data Integrity** | Prevent manipulation with auto-lock mechanism |
-| 5 | **Scalability** | Build production-ready, scalable architecture |
-| 6 | **Automation** | Automated alerts and reports for students |
-
-### 1.3 Project Scope
-
-**Two Separate Mobile Applications:**
-
-1. **Faculty Application** - For teachers to mark and manage attendance
-2. **Student Application** - For students to view attendance records
-
-**Shared Backend:**
-- Single Supabase backend
-- Same PostgreSQL database
-- Role-based access control
+- ✅ **Dual Mobile Apps**: Separate Faculty and Student applications
+- ✅ **Real-time Database**: PostgreSQL with Supabase backend
+- ✅ **Enterprise Security**: Row Level Security (RLS) policies
+- ✅ **Role-based Access**: Strict faculty/student segregation
+- ✅ **Calendar Integration**: Date-based attendance tracking
+- ✅ **Auto-locking Mechanism**: 3-day attendance edit window
+- ✅ **Production-ready Code**: Clean, documented, industry-standard
 
 ---
 
-## 2. Problem Statement & Solution
+## 🏗️ System Architecture
 
-### 2.1 Current Problems
+### Applications
 
-Traditional attendance management faces several challenges:
+#### 1️⃣ **Faculty Application**
+*For Teachers and Instructors*
 
-❌ **Manual Process**
-- Time-consuming paper-based attendance
-- Risk of human error
-- Difficult to maintain records
+- **Authentication**: Faculty ID/Email + Password
+- **Dashboard**: Personal calendar, student management
+- **Attendance Module**: Date-wise marking with subject selection
+- **Student Management**: Activate/deactivate, bulk operations
+- **Access Control**: Only assigned subjects and students
 
-❌ **Data Manipulation**
-- Easy to backdate entries
-- No audit trail
-- Data integrity issues
+#### 2️⃣ **Student Application**
+*For Students (Read-only Access)*
 
-❌ **No Real-time Access**
-- Students don't know their attendance status
-- No automated alerts for low attendance
-- Difficult report generation
+- **Authentication**: Enrollment Number + Password + Semester
+- **Dashboard**: Attendance percentage, alerts
+- **Calendar View**: Visual attendance history (Green/Red indicators)
+- **Detailed View**: Date-wise subject, faculty, and status
+- **Alert System**: Red warning when attendance < 75%
 
-❌ **Inefficient Management**
-- Hard to track semester-wise attendance
-- Subject-wise analysis difficult
-- No centralized system
-
-### 2.2 Our Solution
-
-✅ **Mobile-First Digital System**
-- React Native cross-platform apps
-- Intuitive calendar-based interface
-- Real-time synchronization
-
-✅ **Database-Level Security**
-- Row Level Security policies
-- Auto-lock after 3 days
-- Complete audit trail
-
-✅ **Real-time Tracking**
-- Instant attendance updates
-- Automated alerts (< 75%)
-- Visual calendar view
-
-✅ **Centralized Management**
-- Semester and subject-wise tracking
-- Automated reports
-- Student activation/deactivation
-
----
-
-## 3. System Architecture
-
-### 3.1 Three-Tier Architecture
-
-Our application follows professional **3-tier architecture**:
+### Technology Stack
 
 ```
-┌─────────────────────────────────────────────────┐
-│         PRESENTATION LAYER (Frontend)           │
-│                                                 │
-│  ┌─────────────────┐  ┌──────────────────┐    │
-│  │  Faculty App    │  │  Student App     │    │
-│  │  React Native   │  │  React Native    │    │
-│  │  + Expo         │  │  + Expo          │    │
-│  └─────────────────┘  └──────────────────┘    │
-└────────────────┬────────────────────────────────┘
-                 │
-                 │ REST APIs / Real-time
-                 ↓
-┌─────────────────────────────────────────────────┐
-│       BUSINESS LOGIC LAYER (Backend)            │
-│                                                 │
-│         Supabase Backend Services               │
-│  ┌──────────────────────────────────────────┐  │
-│  │  • Authentication (JWT)                  │  │
-│  │  • Auto-generated REST APIs              │  │
-│  │  • Row Level Security Engine             │  │
-│  │  • Real-time Subscriptions               │  │
-│  │  • Business Rules Enforcement            │  │
-│  └──────────────────────────────────────────┘  │
-└────────────────┬────────────────────────────────┘
-                 │
-                 │ SQL Queries
-                 ↓
-┌─────────────────────────────────────────────────┐
-│           DATA LAYER (Database)                 │
-│                                                 │
-│         PostgreSQL Database                     │
-│  ┌──────────────────────────────────────────┐  │
-│  │  • 6 Normalized Tables (3NF)             │  │
-│  │  • Database Triggers                     │  │
-│  │  • Stored Functions                      │  │
-│  │  • Constraints & Indexes                 │  │
-│  └──────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────┘
-```
+Frontend (Mobile Apps)
+├── Expo (React Native Framework)
+├── React Native (Cross-platform UI)
+└── JavaScript (ES6+)
 
-### 3.2 Component Overview
+Backend
+├── Supabase (Backend as a Service)
+├── PostgreSQL (Relational Database)
+├── Supabase Auth (Authentication)
+└── Row Level Security (Data Protection)
 
-```mermaid
-graph TB
-    subgraph "Mobile Applications"
-        FA[Faculty App<br/>React Native]
-        SA[Student App<br/>React Native]
-    end
-    
-    subgraph "Supabase Backend"
-        AUTH[Authentication<br/>JWT Tokens]
-        API[REST APIs]
-        RLS[Row Level Security]
-        RT[Real-time Engine]
-    end
-    
-    subgraph "Database"
-        DB[(PostgreSQL<br/>6 Tables)]
-        TRIG[Triggers &<br/>Functions]
-    end
-    
-    FA --> AUTH
-    SA --> AUTH
-    AUTH --> RLS
-    FA --> API
-    SA --> API
-    API --> RLS
-    RLS --> DB
-    DB --> TRIG
-    FA --> RT
-    SA --> RT
+Development Tools
+├── Node.js & npm
+├── Expo CLI
+└── Git Version Control
 ```
 
 ---
 
-## 4. Technology Stack
+## 🔐 Authentication & Security
 
-### 4.1 Complete Tech Stack
+### Faculty Login Flow
+```
+Faculty Enter Credentials (ID/Email + Password)
+    ↓
+Semester Selection
+    ↓
+Supabase Authentication
+    ↓
+Role Verification (Is Faculty?)
+    ↓
+Load ONLY Assigned Data (RLS Applied)
+    ↓
+Faculty Dashboard
+```
 
-| Layer | Technology | Purpose | Why Chosen? |
-|-------|------------|---------|-------------|
-| **Frontend** | React Native + Expo | Mobile app development | Cross-platform (iOS + Android), single codebase |
-| **Language** | JavaScript (ES6+) | Application logic | Industry standard, easy to learn |
-| **Backend** | Supabase | Backend-as-a-Service | Built-in auth, APIs, security, real-time |
-| **Database** | PostgreSQL | Relational database | ACID compliance, powerful features |
-| **Authentication** | Supabase Auth | User authentication | JWT-based, secure, built-in |
-| **Security** | Row Level Security | Access control | Database-level, impossible to bypass |
+### Student Login Flow
+```
+Student Enter Credentials (Enrollment + Password)
+    ↓
+Semester Selection (MANDATORY)
+    ↓
+Supabase Authentication
+    ↓
+Semester Validation (Match Database?)
+    ↓
+Role Verification (Is Student?)
+    ↓
+Load ONLY Own Attendance (RLS Applied)
+    ↓
+Student Dashboard (READ-ONLY)
+```
 
-### 4.2 Why These Technologies?
+### Security Features
 
-**React Native + Expo:**
-- ✅ Write once, run on iOS and Android both
-- ✅ Large community and support
-- ✅ Fast development
-- ✅ Modern UI components
-
-**Supabase (Backend):**
-- ✅ No need to write separate backend code
-- ✅ Automatic API generation
-- ✅ Built-in authentication system
-- ✅ Row Level Security for data protection
-- ✅ Real-time capabilities
-- ✅ Free tier for development
-
-**PostgreSQL (Database):**
-- ✅ Most advanced open-source database
-- ✅ ACID compliance (data integrity)
-- ✅ Powerful features (triggers, functions)
-- ✅ Industry standard
+- 🔒 **Row Level Security**: Database-level access control
+- 🔒 **Role-based Authorization**: Faculty vs Student permissions
+- 🔒 **Data Isolation**: Users can only access their own data
+- 🔒 **Auto-locking**: Attendance locked after 3 days
+- 🔒 **Encrypted Authentication**: Supabase secure auth
+- 🔒 **No Client-side Bypass**: All rules enforced at DB level
 
 ---
 
-## 5. Application Features
+## 📱 Features Breakdown
 
-### 5.1 Faculty Application Features
+### Faculty App Features
 
-#### 📅 **Attendance Marking**
+#### 📅 Calendar-Based Attendance
+- Visual calendar interface
+- Select date → Auto-load attendance screen
+- Semester selection (1-6)
+- Subject dropdown (Lecture/Lab differentiated)
+- Student list with P/A toggle
+- Submit and save to database
 
-**Calendar-Based Interface:**
-1. Faculty selects date from calendar
-2. Chooses semester (1-6)
-3. Subject list loads automatically
-4. Student list appears (Lecture or Lab specific)
-5. Marks Present (P) or Absent (A)
-6. Submits to database
-
-**Business Rules:**
-- ✅ Only assigned subjects visible
-- ✅ Only active students shown
-- ✅ Attendance editable for 3 days only
-- ✅ Auto-locks after 3 days (database trigger)
-- ❌ Cannot delete attendance records
-
-#### 👥 **Student Management**
-
-**Features:**
+#### 👥 Student Management
 - View all students semester-wise
 - Activate/Deactivate student accounts
+- Bulk operations (CSV/Excel upload)
 - Assign students to subjects
-- Filter by department
 
-**Future Enhancements:**
-- Bulk upload via CSV/Excel
-- Student profile management
+#### 🔒 Attendance Rules
+- Edit window: **3 days from marking date**
+- After 3 days: **Automatically locked**
+- Lock enforced at **database level**
+- No backdoor edits possible
 
-#### 📊 **Dashboard**
+### Student App Features
 
-**Shows:**
-- Faculty name and department
-- Current date
-- Quick stats
-- Calendar for date selection
-
-### 5.2 Student Application Features
-
-#### 📊 **Dashboard**
-
-**Displays:**
-- Student name
-- Enrollment number
-- Current semester
+#### 📊 Dashboard
+- Student name & enrollment number
+- Current semester display
 - **Overall attendance percentage**
-- Color-coded alert:
-  - 🟢 **GREEN** if attendance ≥ 75%
-  - 🔴 **RED** if attendance < 75%
+- Color-coded alert system:
+  - 🟢 Green: ≥ 75% attendance
+  - 🔴 Red: < 75% attendance (Warning)
 
-#### 📅 **Attendance Calendar View**
-
-**Visual Calendar:**
-- Monthly view
+#### 📅 Attendance Calendar
+- Monthly calendar view
 - Date indicators:
-  - 🟢 **Green dot** = Present on that date
-  - 🔴 **Red dot** = Absent on that date
-- Click on any date to see details
+  - 🟢 **Green**: Present on that day
+  - 🔴 **Red**: Absent on that day
+- Click on date → Show popup with:
+  - Subject name
+  - Lecture or Lab session
+  - Faculty name
+  - Attendance status (P/A)
 
-**Detail Popup Shows:**
-- Subject name
-- Lecture or Lab session
-- Faculty name
-- Attendance status (P/A)
-
-#### 🚫 **Access Restrictions**
-
-**Students CANNOT:**
-- ❌ Modify any attendance data
-- ❌ Delete records
-- ❌ Access other students' data
-- ❌ Edit their profile
-
-**Students CAN ONLY:**
-- ✅ View their own attendance
-- ✅ Check their percentage
-- ✅ See subject-wise details
+#### 🚫 Read-only Access
+- Students **CANNOT**:
+  - Modify attendance
+  - Delete records
+  - Access other students' data
+  - Edit any information
 
 ---
 
-## 6. Database Design
+## 🗄️ Database Schema
 
-### 6.1 Database Schema
+### Core Tables
 
-**Normalization Level:** Third Normal Form (3NF)
-
-#### **Table Structure:**
-
-**1. teachers**
+#### `teachers`
 ```sql
-CREATE TABLE teachers (
-  teacher_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  faculty_id VARCHAR(50) UNIQUE NOT NULL,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(100) UNIQUE NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  department VARCHAR(100),
-  created_at TIMESTAMP DEFAULT NOW()
-);
+- teacher_id (Primary Key)
+- name
+- email
+- faculty_id
+- department
+- created_at
 ```
 
-**2. students**
+#### `students`
 ```sql
-CREATE TABLE students (
-  student_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  enrollment_number VARCHAR(50) UNIQUE NOT NULL,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(100),
-  password_hash VARCHAR(255) NOT NULL,
-  semester INT CHECK (semester BETWEEN 1 AND 6),
-  department VARCHAR(100),
-  is_active BOOLEAN DEFAULT TRUE,
-  created_at TIMESTAMP DEFAULT NOW()
-);
+- student_id (Primary Key)
+- enrollment_number (Unique)
+- name
+- email
+- semester (1-6)
+- department
+- is_active (Boolean)
+- created_at
 ```
 
-**3. subjects**
+#### `subjects`
 ```sql
-CREATE TABLE subjects (
-  subject_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  subject_name VARCHAR(100) NOT NULL,
-  subject_code VARCHAR(20) UNIQUE NOT NULL,
-  semester INT CHECK (semester BETWEEN 1 AND 6),
-  subject_type VARCHAR(10) CHECK (subject_type IN ('Lecture', 'Lab')),
-  assigned_faculty_id UUID REFERENCES teachers(teacher_id),
-  created_at TIMESTAMP DEFAULT NOW()
-);
+- subject_id (Primary Key)
+- subject_name
+- subject_code
+- semester
+- subject_type (Lecture/Lab)
+- assigned_faculty_id (Foreign Key → teachers)
 ```
 
-**4. attendance**
+#### `attendance`
 ```sql
-CREATE TABLE attendance (
-  attendance_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  student_id UUID REFERENCES students(student_id) ON DELETE CASCADE,
-  subject_id UUID REFERENCES subjects(subject_id),
-  faculty_id UUID REFERENCES teachers(teacher_id),
-  date DATE NOT NULL,
-  status VARCHAR(10) CHECK (status IN ('Present', 'Absent')),
-  is_locked BOOLEAN DEFAULT FALSE,
-  marked_at TIMESTAMP DEFAULT NOW(),
-  locked_at TIMESTAMP,
-  UNIQUE(student_id, subject_id, date)
-);
+- attendance_id (Primary Key)
+- student_id (Foreign Key → students)
+- subject_id (Foreign Key → subjects)
+- faculty_id (Foreign Key → teachers)
+- date
+- status (Present/Absent)
+- marked_at
+- is_locked (Boolean)
 ```
 
-**5. semesters**
+#### `semesters`
 ```sql
-CREATE TABLE semesters (
-  semester_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  semester_number INT CHECK (semester_number BETWEEN 1 AND 6),
-  academic_year_id UUID REFERENCES academic_years(year_id),
-  start_date DATE,
-  end_date DATE
-);
+- semester_id (Primary Key)
+- semester_number (1-6)
+- academic_year
+- start_date
+- end_date
 ```
 
-**6. academic_years**
+#### `academic_years`
 ```sql
-CREATE TABLE academic_years (
-  year_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  year_name VARCHAR(20) UNIQUE NOT NULL,
-  start_date DATE NOT NULL,
-  end_date DATE NOT NULL,
-  is_current BOOLEAN DEFAULT FALSE
-);
+- year_id (Primary Key)
+- year_name (e.g., "2025-26")
+- start_date
+- end_date
+- is_current (Boolean)
 ```
-
-### 6.2 Entity Relationships
-
-```mermaid
-erDiagram
-    TEACHERS ||--o{ SUBJECTS : assigns
-    TEACHERS ||--o{ ATTENDANCE : marks
-    STUDENTS ||--o{ ATTENDANCE : receives
-    SUBJECTS ||--o{ ATTENDANCE : tracks
-    SEMESTERS ||--o{ STUDENTS : enrolls
-    ACADEMIC_YEARS ||--o{ SEMESTERS : contains
-    
-    TEACHERS {
-        uuid teacher_id PK
-        string faculty_id UK
-        string name
-        string email UK
-    }
-    
-    STUDENTS {
-        uuid student_id PK
-        string enrollment UK
-        int semester
-        boolean is_active
-    }
-    
-    SUBJECTS {
-        uuid subject_id PK
-        string subject_code UK
-        int semester
-        enum type
-        uuid faculty_id FK
-    }
-    
-    ATTENDANCE {
-        uuid id PK
-        uuid student_id FK
-        uuid subject_id FK
-        date date
-        enum status
-        boolean is_locked
-    }
-```
-
-### 6.3 Database Constraints
-
-| Constraint Type | Purpose | Examples |
-|----------------|---------|----------|
-| **Primary Keys** | Unique identification | All tables have UUID primary keys |
-| **Foreign Keys** | Referential integrity | assigned_faculty_id, student_id, etc. |
-| **Unique** | Prevent duplicates | faculty_id, enrollment_number, subject_code |
-| **Check** | Data validation | semester (1-6), status (P/A), subject_type |
-| **Default** | Auto-population | timestamps, is_active, is_locked |
 
 ---
 
-## 7. Security Implementation
+## 🛡️ Row Level Security Policies
 
-### 7.1 Row Level Security (RLS) Policies
-
-**What is RLS?**
-Row Level Security is a PostgreSQL feature that restricts which rows users can access in database tables. Security is enforced at the **database level**, not client-side.
-
-### 7.2 Faculty Policies
-
+### Faculty Policies
 ```sql
--- Faculty can view only their assigned subjects
-CREATE POLICY faculty_view_subjects ON subjects
-FOR SELECT
-USING (assigned_faculty_id = auth.uid());
+-- Faculty can only view their assigned subjects
+CREATE POLICY faculty_view_own_subjects ON subjects
+FOR SELECT USING (assigned_faculty_id = auth.uid());
 
--- Faculty can mark attendance for their students
-CREATE POLICY faculty_insert_attendance ON attendance
-FOR INSERT
-WITH CHECK (
-  faculty_id = auth.uid() AND
-  EXISTS (
-    SELECT 1 FROM subjects
-    WHERE subject_id = attendance.subject_id
+-- Faculty can only mark attendance for their students
+CREATE POLICY faculty_mark_attendance ON attendance
+FOR INSERT WITH CHECK (
+  faculty_id = auth.uid() 
+  AND EXISTS (
+    SELECT 1 FROM subjects 
+    WHERE subject_id = attendance.subject_id 
     AND assigned_faculty_id = auth.uid()
   )
 );
 
--- Faculty can edit attendance within 3 days only
-CREATE POLICY faculty_update_attendance ON attendance
-FOR UPDATE
-USING (
-  faculty_id = auth.uid() AND
-  is_locked = FALSE AND
-  marked_at >= NOW() - INTERVAL '3 days'
+-- Faculty can edit attendance only within 3 days
+CREATE POLICY faculty_edit_within_3days ON attendance
+FOR UPDATE USING (
+  faculty_id = auth.uid() 
+  AND is_locked = false
+  AND marked_at >= NOW() - INTERVAL '3 days'
 );
-
--- Faculty cannot delete attendance
-CREATE POLICY faculty_no_delete ON attendance
-FOR DELETE
-USING (FALSE);
 ```
 
-### 7.3 Student Policies
-
+### Student Policies
 ```sql
--- Students can view only their own attendance
-CREATE POLICY student_view_attendance ON attendance
-FOR SELECT
-USING (student_id = auth.uid());
+-- Students can only view their own attendance
+CREATE POLICY student_view_own_attendance ON attendance
+FOR SELECT USING (student_id = auth.uid());
 
--- Students cannot insert data
+-- Students cannot insert, update, or delete
 CREATE POLICY student_no_insert ON attendance
-FOR INSERT
-WITH CHECK (FALSE);
+FOR INSERT WITH CHECK (false);
 
--- Students cannot update data
 CREATE POLICY student_no_update ON attendance
-FOR UPDATE
-USING (FALSE);
+FOR UPDATE USING (false);
 
--- Students cannot delete data
 CREATE POLICY student_no_delete ON attendance
-FOR DELETE
-USING (FALSE);
-```
-
-### 7.4 Auto-Lock Mechanism
-
-**Database Trigger for Auto-Locking:**
-
-```sql
--- Function to auto-lock attendance after 3 days
-CREATE OR REPLACE FUNCTION auto_lock_attendance()
-RETURNS void AS $$
-BEGIN
-  UPDATE attendance
-  SET is_locked = TRUE,
-      locked_at = NOW()
-  WHERE is_locked = FALSE
-    AND marked_at < NOW() - INTERVAL '3 days';
-END;
-$$ LANGUAGE plpgsql;
-
--- Schedule as cron job (runs daily at midnight)
-SELECT cron.schedule(
-  'auto-lock-attendance',
-  '0 0 * * *',
-  $$ SELECT auto_lock_attendance(); $$
-);
-```
-
-**How it Works:**
-1. Attendance is marked → `marked_at` timestamp saved
-2. Every day at midnight, cron job runs
-3. Checks if `marked_at` is > 3 days old
-4. If yes → Sets `is_locked = TRUE`
-5. Once locked → Faculty cannot edit
-
----
-
-## 8. System Flowcharts
-
-### 8.1 Faculty Login & Authentication
-
-```mermaid
-sequenceDiagram
-    participant Faculty
-    participant App
-    participant SupabaseAuth
-    participant Database
-    participant RLS
-
-    Faculty->>App: Enter Faculty ID + Password
-    App->>App: Client Validation
-    App->>SupabaseAuth: Login Request
-    SupabaseAuth->>Database: Verify Credentials
-    Database-->>SupabaseAuth: User + Role
-    SupabaseAuth->>SupabaseAuth: Generate JWT
-    SupabaseAuth-->>App: JWT Token + Data
-    App->>Faculty: Show Semester Selection
-    Faculty->>App: Select Semester
-    App->>Database: Request Subjects
-    Database->>RLS: Apply Faculty Policies
-    RLS-->>App: Only Assigned Subjects
-    App->>Faculty: Show Dashboard
-```
-
-### 8.2 Faculty Attendance Marking Process
-
-```mermaid
-flowchart TD
-    Start([Faculty Dashboard]) --> SelectDate[Select Date<br/>from Calendar]
-    SelectDate --> SelectSem[Select Semester<br/>1 to 6]
-    SelectSem --> LoadSub[Auto-load<br/>Subject List]
-    LoadSub --> ChooseSub[Select Subject]
-    ChooseSub --> Type{Subject Type?}
-    Type -->|Lecture| LoadLec[Load Students<br/>Lecture Group]
-    Type -->|Lab| LoadLab[Load Students<br/>Lab Group]
-    LoadLec --> MarkScreen[Attendance<br/>Marking Screen]
-    LoadLab --> MarkScreen
-    MarkScreen --> Mark[Mark P or A<br/>for each student]
-    Mark --> AllDone{All<br/>Marked?}
-    AllDone -->|No| Mark
-    AllDone -->|Yes| CheckDate{Date Within<br/>3 Days?}
-    CheckDate -->|No| Locked[❌ LOCKED<br/>Cannot Save]
-    CheckDate -->|Yes| Save[✅ Save to<br/>Database]
-    Save --> Success[Success<br/>Message]
-    Success --> End([Return to<br/>Dashboard])
-    Locked --> End
-```
-
-### 8.3 Student Login & Dashboard Flow
-
-```mermaid
-flowchart TD
-    Start([Student Login]) --> Enter[Enter Enrollment<br/>+ Password]
-    Enter --> SelSem[Select Semester]
-    SelSem --> Auth[Supabase<br/>Authentication]
-    Auth --> Verify{Semester<br/>Match DB?}
-    Verify -->|No| Deny[❌ Login Denied<br/>Semester Mismatch]
-    Verify -->|Yes| Load[Load Attendance<br/>Data]
-    Load --> Calc[Calculate<br/>Percentage]
-    Calc --> Check{Attendance<br/>< 75%?}
-    Check -->|Yes| Red[🔴 RED Alert<br/>Warning]
-    Check -->|No| Green[🟢 GREEN<br/>Good Status]
-    Red --> Dash[Student Dashboard]
-    Green --> Dash
-    Dash --> Action{User Action?}
-    Action -->|Calendar| Cal[Calendar View]
-    Action -->|Logout| End([Logout])
-    Cal --> Click[Click on Date]
-    Click --> Details[Show Popup:<br/>Subject, Faculty,<br/>Status]
-    Details --> Dash
-```
-
-### 8.4 Auto-Lock Mechanism
-
-```mermaid
-flowchart LR
-    Mark[Attendance<br/>Marked] --> Save[Save with<br/>marked_at]
-    Save --> Cron[Daily Cron<br/>Midnight]
-    Cron --> Check{marked_at > 3 days?}
-    Check -->|No| Wait[Wait]
-    Check -->|Yes| Lock[Set<br/>is_locked=TRUE]
-    Lock --> TS[Set locked_at<br/>timestamp]
-    TS --> Update[Update DB]
-    Update --> NoEdit[🔒 Faculty<br/>Cannot Edit]
+FOR DELETE USING (false);
 ```
 
 ---
 
-## 9. Implementation Details
+## 📐 System Flowcharts
 
-### 9.1 Project Structure
+### Overall System Architecture
+```mermaid
+graph TB
+    subgraph "Mobile Applications"
+        FA[Faculty App<br/>Expo + React Native]
+        SA[Student App<br/>Expo + React Native]
+    end
+    
+    subgraph "Backend - Supabase"
+        AUTH[Supabase Auth<br/>JWT Tokens]
+        DB[(PostgreSQL Database)]
+        RLS[Row Level Security]
+    end
+    
+    FA -->|Faculty Login| AUTH
+    SA -->|Student Login| AUTH
+    AUTH -->|Authenticated| RLS
+    RLS -->|Filtered Data| DB
+    DB -->|Faculty Data| FA
+    DB -->|Student Data| SA
+```
+
+### Faculty Attendance Flow
+```mermaid
+graph TD
+    A[Faculty Dashboard] --> B[Select Date from Calendar]
+    B --> C[Select Semester 1-6]
+    C --> D[Auto-load Subject List]
+    D --> E[Select Subject Lecture/Lab]
+    E --> F[Auto-load Student List]
+    F --> G[Mark P/A for Each Student]
+    G --> H{Within 3 Days?}
+    H -->|Yes| I[Save Attendance]
+    H -->|No| J[Attendance Locked]
+    I --> K[Success Confirmation]
+```
+
+### Student Attendance View Flow
+```mermaid
+graph TD
+    A[Student Login] --> B{Semester Valid?}
+    B -->|No| C[Login Denied]
+    B -->|Yes| D[Student Dashboard]
+    D --> E[View Attendance %]
+    E --> F{Attendance < 75%?}
+    F -->|Yes| G[Show RED Alert]
+    F -->|No| H[Show GREEN Status]
+    D --> I[Open Calendar View]
+    I --> J[Click on Date]
+    J --> K[Show Popup with Details]
+    K --> L[Subject + Faculty + Status]
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+```bash
+- Node.js (v14 or higher)
+- npm or yarn
+- Expo CLI
+- Supabase Account
+- Git
+```
+
+### Installation Steps
+
+1️⃣ **Clone the Repository**
+```bash
+git clone <repository-url>
+cd student-attendance-system
+```
+
+2️⃣ **Install Dependencies**
+```bash
+# For Faculty App
+cd faculty-app
+npm install
+
+# For Student App
+cd ../student-app
+npm install
+```
+
+3️⃣ **Setup Supabase**
+- Create a new Supabase project
+- Copy `SUPABASE_URL` and `SUPABASE_ANON_KEY`
+- Create `.env` file in both apps:
+
+```env
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_anon_key
+```
+
+4️⃣ **Run Database Migrations**
+```bash
+# Execute SQL files in Supabase SQL Editor
+# 1. schema.sql
+# 2. rls-policies.sql
+# 3. seed-data.sql (optional)
+```
+
+5️⃣ **Start Development Servers**
+```bash
+# Faculty App
+cd faculty-app
+npx expo start
+
+# Student App
+cd student-app
+npx expo start
+```
+
+---
+
+## 📂 Project Structure
 
 ```
 student-attendance-system/
@@ -657,9 +412,10 @@ student-attendance-system/
 │   │   │   ├── Calendar.js
 │   │   │   ├── StudentList.js
 │   │   │   └── SubjectPicker.js
-│   │   └── services/
-│   │       ├── supabaseClient.js
-│   │       └── authService.js
+│   │   ├── services/
+│   │   │   ├── supabaseClient.js
+│   │   │   └── authService.js
+│   │   └── utils/
 │   ├── App.js
 │   └── package.json
 │
@@ -671,344 +427,151 @@ student-attendance-system/
 │   │   │   └── AttendanceCalendarScreen.js
 │   │   ├── components/
 │   │   │   ├── AttendanceCalendar.js
+│   │   │   ├── AttendanceCard.js
 │   │   │   └── AlertBadge.js
-│   │   └── services/
-│   │       ├── supabaseClient.js
-│   │       └── authService.js
+│   │   ├── services/
+│   │   │   ├── supabaseClient.js
+│   │   │   └── authService.js
+│   │   └── utils/
 │   ├── App.js
 │   └── package.json
 │
 ├── database/
 │   ├── schema.sql
 │   ├── rls-policies.sql
-│   ├── triggers.sql
+│   ├── functions.sql
 │   └── seed-data.sql
 │
-└── docs/
-    ├── README.md
-    ├── ARCHITECTURE.md
-    └── FINAL_PRESENTATION.md
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── DOCUMENTATION.md
+│   ├── DATABASE_SCHEMA.md
+│   └── SECURITY.md
+│
+└── README.md
 ```
 
-### 9.2 Key Features Summary
+---
 
-| # | Feature | Description | Implementation |
-|---|---------|-------------|----------------|
-| 1 | **Database Security** | RLS policies at DB level | PostgreSQL RLS |
-| 2 | **Auto-Lock** | 3-day window enforcement | Database trigger + cron |
-| 3 | **Role-Based Access** | Faculty vs Student permissions | Supabase Auth + RLS |
-| 4 | **Real-time Alerts** | RED alert for < 75% | Client-side calculation |
-| 5 | **Visual Calendar** | Green/Red date indicators | React Native calendar |
-| 6 | **Production Ready** | Clean code, documentation | Industry standards |
+## 🧪 Testing Strategy
+
+### Unit Testing
+- Authentication flows
+- Database queries
+- RLS policy validation
+- Date calculations
+
+### Integration Testing
+- Faculty marking attendance
+- Student viewing attendance
+- Auto-lock mechanism
+- Semester validation
+
+### Manual Testing
+- UI/UX testing on real devices
+- Cross-platform compatibility (iOS/Android)
+- Network error handling
+- Edge cases (expired sessions, invalid data)
 
 ---
 
-## 10. Project Timeline
+## 🎓 Learning Outcomes
 
-### Phase-wise Development Plan
+### For Students Working on This Project
 
-| Phase | Duration | Tasks | Status |
-|-------|----------|-------|--------|
-| **Phase 1** | Week 1 | Planning, Architecture, Documentation | ✅ Complete |
-| **Phase 2** | Week 2 | Supabase setup, Database schema, RLS | 📅 Planned |
-| **Phase 3** | Week 3-4 | Faculty App development | 📅 Planned |
-| **Phase 4** | Week 5-6 | Student App development | 📅 Planned |
-| **Phase 5** | Week 7 | Testing, Bug fixes | 📅 Planned |
-| **Phase 6** | Week 8 | Deployment, Presentation | 📅 Planned |
+#### Technical Skills
+- ✅ **Mobile Development**: React Native & Expo
+- ✅ **Backend Integration**: REST APIs & Supabase
+- ✅ **Database Design**: Normalization & relationships
+- ✅ **Security**: Authentication & authorization
+- ✅ **State Management**: React hooks & context
 
----
-
-## 11. Presentation Script
-
-### 11.1 Opening (2 minutes)
-
-**Greeting:**
-> "Good morning/afternoon Sir and team members."
-
-**Introduction:**
-> "Today we are presenting our project: **Student Attendance Management System** - a professional, production-ready mobile application for educational institutions."
-
-**Quick Overview:**
-> "Our project consists of:
-> - TWO mobile applications (Faculty and Student)
-> - Built with React Native and Expo
-> - Supabase backend with PostgreSQL database
-> - Enterprise-level security with Row Level Security"
-
-### 11.2 Problem & Solution (3 minutes)
-
-**Problem Statement:**
-> "Currently, attendance management in colleges faces challenges:
-> 1. Manual paper-based system is time-consuming
-> 2. Risk of data manipulation and backdating
-> 3. Students don't get real-time updates
-> 4. Difficult to generate reports"
-
-**Our Solution:**
-> "We have developed a complete digital solution with:
-> 1. Mobile apps for easy access
-> 2. Database-level security to prevent manipulation
-> 3. Real-time attendance tracking
-> 4. Automated alerts for students"
-
-### 11.3 Architecture Explanation (5 minutes)
-
-**Three-Tier Architecture:**
-> "Our application follows professional 3-tier architecture:
->
-> **Layer 1 - Frontend (Presentation):**
-> - React Native mobile apps
-> - Faculty App and Student App
-> - JavaScript language
->
-> **Layer 2 - Backend (Business Logic):**
-> - Supabase backend services
-> - Authentication, APIs, security policies
-> - Real-time data synchronization
->
-> **Layer 3 - Database (Data):**
-> - PostgreSQL relational database
-> - 6 normalized tables (3NF)
-> - Triggers and functions"
-
-**Show Architecture Diagram** (from Section 3)
-
-### 11.4 Features Demo (5 minutes)
-
-**Faculty App:**
-> "Faculty can:
-> 1. Login with Faculty ID
-> 2. Select date from calendar
-> 3. Choose semester and subject
-> 4. Mark attendance (P/A)
-> 5. Manage students
->
-> **Important:** Attendance can be edited for only 3 days. After that, it automatically locks to prevent data manipulation."
-
-**Student App:**
-> "Students can:
-> 1. Login with Enrollment Number
-> 2. View attendance dashboard
-> 3. See overall percentage
-> 4. Get RED alert if below 75%
-> 5. Check calendar with green/red dates
->
-> **Important:** Students have READ-ONLY access. They cannot modify any data."
-
-### 11.5 Technical Details (5 minutes)
-
-**Database Design:**
-> "We have designed 6 tables following Third Normal Form (3NF):
-> - teachers
-> - students  
-> - subjects
-> - attendance
-> - semesters
-> - academic_years
->
-> All tables have proper relationships, constraints, and indexes."
-
-**Security Implementation:**
-> "Security is NOT client-side. It's enforced at DATABASE LEVEL using Row Level Security policies.
->
-> **Faculty Policies:**
-> - Can view only assigned subjects
-> - Can mark attendance for their students
-> - Can edit within 3 days only
->
-> **Student Policies:**
-> - Can view only own attendance
-> - Cannot insert, update, or delete anything"
-
-**Show RLS Policy Code** (from Section 7)
-
-### 11.6 Auto-Lock Mechanism (2 minutes)
-
-> "We have implemented an auto-lock mechanism using database triggers:
->
-> 1. When attendance is marked, timestamp is saved
-> 2. A cron job runs daily at midnight
-> 3. It checks all attendance records
-> 4. If marked_at is more than 3 days old
-> 5. It automatically sets is_locked = TRUE
-> 6. Once locked, faculty cannot edit
->
-> This prevents backdating and ensures data integrity."
-
-**Show Flowchart** (from Section 8.4)
-
-### 11.7 Closing (2 minutes)
-
-**Summary:**
-> "To summarize:
-> - Complete 3-tier architecture
-> - Two mobile apps with separate roles
-> - Database-level security
-> - Auto-lock mechanism
-> - Production-ready code
->
-> This project demonstrates professional software development practices and is ready for real-world deployment."
-
-**Thank You:**
-> "Thank you for your attention. We are ready for questions."
+#### Professional Skills
+- ✅ **Clean Code**: Readable, maintainable code
+- ✅ **Documentation**: Technical writing
+- ✅ **Version Control**: Git workflow
+- ✅ **Problem Solving**: Real-world challenges
+- ✅ **Project Planning**: Architecture design
 
 ---
 
-## 12. Q&A Preparation
+## 👥 Team Members
 
-### Expected Questions & Answers
-
-#### Q1: Why Supabase instead of Node.js backend?
-
-**Answer:**
-> "Sir, Supabase is a modern backend-as-a-service platform that provides:
-> - Built-in authentication system
-> - Automatic API generation
-> - Row Level Security (database-level)
-> - Real-time capabilities
-> - Faster development
->
-> It's used by companies like GitHub and Notion. It provides all backend functionality without writing separate Node.js code. However, if required, we can add a custom Node.js layer as well."
-
-#### Q2: How do you ensure attendance accuracy?
-
-**Answer:**
-> "We have multiple safeguards:
-> 1. Faculty must select date, semester, subject
-> 2. Student list auto-loads (no manual entry)
-> 3. Every record has timestamp and faculty ID
-> 4. 3-day edit window
-> 5. Auto-lock after 3 days
-> 6. Complete audit trail in database
-> 7. Database-level security policies"
-
-#### Q3: What if faculty needs to edit locked attendance?
-
-**Answer:**
-> "In production, we would add an Admin role with unlock permissions. Admin can:
-> - Review unlock requests
-> - Check audit logs
-> - Approve/reject with justification
->
-> For this academic project, we focused on core faculty-student workflow."
-
-#### Q4: Can this scale to 1000+ students?
-
-**Answer:**
-> "Yes, absolutely:
-> - Database has proper indexes
-> - Supabase auto-scales
-> - Mobile apps are lightweight
-> - Pagination for large lists
-> - Caching strategies
->
-> The architecture is designed for production scale."
-
-#### Q5: Why separate apps instead of one app?
-
-**Answer:**
-> "Design decision for:
-> - Clear separation of concerns
-> - Different UI/UX for each role
-> - Smaller app sizes
-> - Easier testing and maintenance
-> - Can update independently
-> - Better user experience"
-
-#### Q6: How is this different from Google Forms?
-
-**Answer:**
-> "Google Forms cannot provide:
-> - Mobile native experience
-> - Database-level security
-> - Role-based access control
-> - Real-time alerts
-> - Auto-lock mechanism
-> - Proper relationships between data
-> - Scalable architecture
->
-> Our system is built specifically for attendance with proper database design."
-
-#### Q7: What about offline attendance marking?
-
-**Answer:**
-> "Future enhancement:
-> - Local SQLite database
-> - Queue operations when offline
-> - Sync when online
-> - Conflict resolution
->
-> For this project, we assume internet connectivity."
-
-#### Q8: How do you handle semester promotion?
-
-**Answer:**
-> "At year end:
-> 1. Admin updates student semester numbers
-> 2. New academic year record created
-> 3. Old data remains for reports
-> 4. Students automatically see new semester
->
-> Can also be done via bulk upload (CSV)."
+| Name | Role | Responsibilities |
+|------|------|-----------------|
+| [Your Name] | Lead Developer | Overall architecture, backend setup |
+| [Team Member 2] | Frontend Developer | Faculty app UI/UX |
+| [Team Member 3] | Frontend Developer | Student app UI/UX |
+| [Team Member 4] | Database Designer | Schema design, RLS policies |
 
 ---
 
-## 📊 Final Statistics
+## 📝 Documentation
 
-| Metric | Value |
-|--------|-------|
-| **Mobile Apps** | 2 (Faculty + Student) |
-| **Database Tables** | 6 (Normalized to 3NF) |
-| **Security Policies** | 8 RLS policies |
-| **Triggers** | 1 Auto-lock trigger |
-| **Tech Stack** | React Native, Supabase, PostgreSQL |
-| **Architecture** | 3-Tier Professional |
-| **Documentation** | Complete (50+ pages) |
+- 📘 [System Architecture](./docs/ARCHITECTURE.md) - Complete system design
+- 📘 [Technical Documentation](./docs/DOCUMENTATION.md) - Detailed specs
+- 📘 [Database Schema](./docs/DATABASE_SCHEMA.md) - Full database design
+- 📘 [Security Guide](./docs/SECURITY.md) - RLS policies & auth flows
 
 ---
 
-## 🎯 Key Takeaways
+## 🎯 Project Timeline
 
-✅ **Professional Architecture** - Industry-standard 3-tier design  
-✅ **Complete Security** - Database-level RLS policies  
-✅ **Data Integrity** - Auto-lock mechanism prevents manipulation  
-✅ **Scalable Solution** - Production-ready code  
-✅ **Modern Tech Stack** - React Native, Supabase, PostgreSQL  
-✅ **Comprehensive Documentation** - All aspects covered  
-
----
-
-## 📞 Contact Information
-
-**Project Team:**
-- [Your Name] - Lead Developer
-- [Team Member 2] - Frontend Developer
-- [Team Member 3] - Database Designer
-- [Team Member 4] - Documentation
-
-**Institution:** Government Polytechnic College  
-**Year:** 2026  
-**Project Guide:** [Professor Name]
+| Phase | Duration | Status |
+|-------|----------|--------|
+| **Planning & Documentation** | Week 1 | ✅ Complete |
+| **Database Design** | Week 2 | 🔄 In Progress |
+| **Faculty App Development** | Week 3-4 | ⏳ Pending |
+| **Student App Development** | Week 5-6 | ⏳ Pending |
+| **Testing & Bug Fixes** | Week 7 | ⏳ Pending |
+| **Deployment & Presentation** | Week 8 | ⏳ Pending |
 
 ---
 
-## 📄 Document Information
+## 🏆 Evaluation Criteria
 
-**Document Title:** Student Attendance Management System - Final Documentation  
-**Version:** 1.0  
-**Last Updated:** January 29, 2026  
-**Status:** Complete - Ready for Presentation  
+### For Academic Assessment
+
+- ✅ **Functionality**: All features working as specified
+- ✅ **Code Quality**: Clean, documented, industry-standard
+- ✅ **Security**: Proper authentication & authorization
+- ✅ **Database Design**: Normalized, efficient schema
+- ✅ **UI/UX**: Professional, user-friendly interface
+- ✅ **Documentation**: Comprehensive technical docs
+- ✅ **Presentation**: Clear explanation of architecture
+
+---
+
+## 📞 Contact & Support
+
+For questions or issues related to this project:
+
+- 📧 Email: [your-email@example.com]
+- 📱 Phone: [Your Phone Number]
+- 🔗 GitHub: [Your GitHub Profile]
+
+---
+
+## 📄 License
+
+This project is developed as an academic assignment for Government Polytechnic College.  
+© 2026 All Rights Reserved.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Government Polytechnic College** - For project guidance
+- **Supabase Team** - For excellent backend platform
+- **Expo Team** - For React Native framework
+- **Open Source Community** - For invaluable resources
 
 ---
 
 <div align="center">
 
-**🎓 Built with dedication for academic excellence**
+**Built with ❤️ by [Your Team Name]**
 
-**Government Polytechnic College - 2026**
-
----
-
-**© 2026 All Rights Reserved**
+**For Academic Excellence & Real-World Impact**
 
 </div>
